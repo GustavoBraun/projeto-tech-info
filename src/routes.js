@@ -1,16 +1,17 @@
 import Router from "express";
-import { VeiculoRepository } from "./repository/veiculoRepository.js";
+import { VeiculoRepository } from "./repository/veiculo.repository.js";
+import { VeiculoController } from "./controller/veiculo.controller.js";
 
 const router = Router();
-const veiculoRepository = new VeiculoRepository;
+const veiculoController = new VeiculoController;
 router.get("/", (req, res) => {
     res.send("Olá.")
 });
 
-router.get("/veiculo", veiculoRepository.getVeiculos);
-router.get("/veiculo/:id", veiculoRepository.getVeiculo)
-router.post("/veiculo", veiculoRepository.insertVeiculo);
-router.put("/veiculo/:id", veiculoRepository.updateVeiculo);
-router.delete("/veiculo/:id", veiculoRepository.deleteVeiculo);
+router.get("/veiculo", veiculoController.list);
+router.get("/veiculo/:id", veiculoController.listOne);
+router.post("/veiculo", veiculoController.create);
+router.put("/veiculo/:id", veiculoController.update);
+router.delete("/veiculo/:id", veiculoController.delete);
 
 export default router

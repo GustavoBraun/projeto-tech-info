@@ -1,11 +1,15 @@
 import express, { Router } from "express";
-import createTable from "./entity/Veiculo.js";
 import router from "./routes.js";
+import swaggerUi from "swagger-ui-express"
+import swaggerDocs from "./swagger.json" with { type: "json"}
+import { errorMiddleware } from "./middlewares/error.handling.js";
+import { createTable } from "./database/db.config.js";
 
 const PORT = 8080;
-const app = express();
-app.use(router)
-app.use(express.json());
-
+export const app = express();
 createTable();
+app.use(express.json());
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+app.use(router)
+app.use(errorMiddleware)
 app.listen(PORT)
