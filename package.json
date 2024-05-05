@@ -5,7 +5,7 @@
   "main": "./src/index.js",
   "type": "module",
   "scripts": {
-    "dev" : "npx src/index.js",
+    "dev": "npx src/index.js",
     "test": "mocha"
   },
   "keywords": [],
@@ -20,7 +20,6 @@
   },
   "devDependencies": {
     "chai": "^5.1.0",
-    "chai-as-promised": "^7.1.1",
     "chai-http": "^4.4.0"
   }
 }

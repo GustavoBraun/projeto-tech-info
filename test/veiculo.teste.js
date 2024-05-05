@@ -1,10 +1,9 @@
 import { use, expect } from "chai";
 import chaiHttp from "chai-http";
-import chaiAsPromised from "chai-as-promised";
 import { app } from "../src/index.js";
 import { VeiculoService } from "../src/service/veiculo.service.js";
 
-const chai = use(chaiHttp, chaiAsPromised);
+const chai = use(chaiHttp);
 const veiculoService = new VeiculoService;
 
 describe('Veiculo', () => {
