@@ -12,4 +12,6 @@ app.use(express.json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 app.use(router)
 app.use(errorMiddleware)
-app.listen(PORT)
+app.listen(PORT, () => {
+    console.log("Aplicação rodando na URL http://localhost:8080/");
+})
