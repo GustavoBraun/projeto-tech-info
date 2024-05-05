@@ -5,7 +5,7 @@ import { VeiculoController } from "./controller/veiculo.controller.js";
 const router = Router();
 const veiculoController = new VeiculoController;
 router.get("/", (req, res) => {
-    res.send("Olá.")
+    res.send("Olá. Para ver a documentação da aplicação, vá até a rota http://localhost:8080/api-docs/")
 });
 
 router.get("/veiculo", veiculoController.list);
