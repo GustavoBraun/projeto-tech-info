@@ -1,11 +1,60 @@
-body {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    place-items: center;
-    padding: 20px;
-    overflow: auto;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+.main-container {
+  display: grid;
+  justify-content: center;
+
+}
+
+.shadowTudo {
+  margin: 3rem;
+  -webkit-box-shadow: -46px -11px 13px 8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -46px -11px 13px 8px rgba(0, 0, 0, 0.75);
+  box-shadow: -46px -11px 13px 8px rgba(0, 0, 0, 0.75);
+}
+
+.erro {
+  color: red;
+  text-align: center;
+}
+
+.erro h1 {
+  padding: 1rem;
+  font-style: italic;
+}
+
+.forms {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  border: 1px solid gray;
+
+}
+
+.campos {
+  margin: 1rem;
+  display: grid;
+}
+
+table {
+  width: 100%;
+}
+
+th,
+td {
+  padding: 1.3rem;
+  text-align: center;
+}
+
+.botoes {
+  display: grid;
+}
+
+.botoes button {
+  margin: .4rem 0 .4rem 0;
+}

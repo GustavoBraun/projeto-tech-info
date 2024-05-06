@@ -2,17 +2,18 @@ import { Injectable } from '@angular/core';
 import { Veiculo } from '../Veiculo';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ListService {
+export class VeiculoService {
 
-  private apiURL = 'http://localhost:8080/veiculo'
-
+  private apiURL = `${environment.api}/veiculo`
+  
   constructor(private http: HttpClient) { }
   
-  getAll():Observable<Veiculo[]> {
+  getAll() {
     return this.http.get<Veiculo[]>(this.apiURL);
   }
 
@@ -22,6 +23,10 @@ export class ListService {
 
   post(veiculo: Object) {
     return this.http.post<Veiculo>(this.apiURL, veiculo);
+  }
+
+  put(veiculo: Object, id: number) {
+    return this.http.put<Veiculo>(`${this.apiURL}/${id}`, veiculo)
   }
 
 }
