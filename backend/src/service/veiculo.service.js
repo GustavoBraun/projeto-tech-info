@@ -1,4 +1,4 @@
-import { ApiError } from "../customError/api.error.js";
+import { ApiError } from "../custom_error/api.error.js";
 import { VeiculoRepository } from "../repository/veiculo.repository.js";
 
 const veiculoRepository = new VeiculoRepository

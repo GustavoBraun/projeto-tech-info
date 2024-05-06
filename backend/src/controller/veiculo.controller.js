@@ -1,6 +1,4 @@
-import { VeiculoRepository } from "../repository/veiculo.repository.js";
 import { VeiculoService } from "../service/veiculo.service.js";
-const veiculoRepository = new VeiculoRepository
 const veiculoService = new  VeiculoService
 
 export class VeiculoController {
