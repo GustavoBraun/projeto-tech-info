@@ -1,0 +1,242 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "CRUD de veiculos",
+        "description": "Esse é um sistema feito para fazer o CRUD de veiculos para o processo seletivo da INFOTECH.",
+        "version": "1.0.0",
+        "contact": {
+            "email": "gustavo.n.braun@outlook.com"
+        }
+    },
+    "server": [
+        {
+            "url": "http://localhost:3000/v1",
+            "description": "Api de teste"
+        }
+    ],
+    "paths": {
+        "/veiculo": {
+            "get": {
+                "summary": "Retorna todos os veiculos",
+                "description": "Essa rota é responsável por retornar todos os veiculos salvos no banco de dados.",
+                "tags": [
+                    "Veiculo"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Veiculo"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Lista vazia."
+                    }
+                }
+            },
+            "post": {
+                "summary": "Cadastro de veiculo.",
+                "description": "Essa rota é responsável por cadastrar um novo veiculo no banco de dados.",
+                "tags": [
+                    "Veiculo"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Veiculo"
+                            },
+                            "examples": {
+                                "veiculo": {
+                                    "value": {
+                                        "placa": "NAX9111",
+                                        "chassi": "2NV s5p0R8 Td 118036",
+                                        "renavam": 87730328207,
+                                        "modelo": "TOPIC FURGAO L 2.2 8V/ 2.0 16V 4p",
+                                        "marca": "JINBEI",
+                                        "ano": 2009
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Veiculo"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Por favor, preencha todos os campos."
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/veiculo/{id}": {
+            "get": {
+                "description": "Essa rota é responsável por retornar um único veiculo salvo no banco de dados usando o ID como parametro.",
+                "tags": [
+                    "Veiculo"
+                ],
+                "summary": "Busca de um veiculo pelo ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do veiculo para busca",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Veiculo"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Veiculo não encontrado."
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "put": {
+                "description": "Essa rota é responsável por atualizar um veiculo salvo no banco de dados usando o ID como parametro.",
+                "tags": [
+                    "Veiculo"
+                ],
+                "summary": "Atualização de um veiculo pelo ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do veiculo para busca",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Veiculo"
+                            },
+                            "examples": {
+                                "veiculo": {
+                                    "value": {
+                                        "placa": "ABC1234",
+                                        "chassi": "2MJ hf913f Dt 118036",
+                                        "renavam": 924651328207,
+                                        "modelo": "TOPIC FURGAO L 2.2 8V/ 2.0 16V 4p",
+                                        "marca": "JINBEI",
+                                        "ano": 2009
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/Veiculo"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Veiculo não encontrado."
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "description": "Essa rota é responsável por deleter um veiculo salvo no banco de dados usando o ID como parametro.",
+                "tags": [
+                    "Veiculo"
+                ],
+                "summary": "Deletar um veiculo pelo ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do veiculo para busca",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Veiculo não encontrado."
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Veiculo": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "placa": {
+                        "type": "string"
+                    },
+                    "chassi": {
+                        "type": "string"
+                    },
+                    "renavam": {
+                        "type": "number"
+                    },
+                    "modelo": {
+                        "type": "string"
+                    },
+                    "marca": {
+                        "type": "string"
+                    },
+                    "ano": {
+                        "type": "number"
+                    }
+                }
+            }
+        }
+    }
+}
