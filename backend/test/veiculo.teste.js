@@ -192,7 +192,7 @@ describe('Veiculo', () => {
         chai.request(app)
             .delete('/veiculo/' + id)
             .end((err, res) => {
-                expect(res.text).to.equal('Veiculo deletado.');
+                expect(res.text).to.equal('{"message":"Veiculo deletado."}');
                 expect(res).to.have.status(200);
                 done();
             })
