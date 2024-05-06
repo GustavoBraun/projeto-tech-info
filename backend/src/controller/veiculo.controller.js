@@ -46,7 +46,7 @@ export class VeiculoController {
         try {
             const veiculoID = parseInt(req.params.id);
             const message = await veiculoService.delete(veiculoID);
-            return res.send(message);
+            return res.send({message: message});
         } catch (error) {
             next(error);
         }
