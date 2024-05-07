@@ -9,7 +9,7 @@
 ### Executando
 - Abra a pasta backend no terminal
 - Instale as dependências  - `npm i`
-- Execute o projeto - `npm run dev` ou então construa a imagem docker com o arquivo Dockerfile
+- Execute o projeto - `npm run dev` ou então através do docker com o comando `docker build -t infotech:latest .` seguido de `docker run infotech:latest`
 - Execute os testes - `npm teste`
 - Vá para a página do swagger - ` http://localhost:8080/api-docs/`
 
