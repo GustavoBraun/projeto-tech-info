@@ -15,7 +15,7 @@
         }
     ],
     "paths": {
-        "/veiculo": {
+        "/vehicle": {
             "get": {
                 "summary": "Retorna todos os veiculos",
                 "description": "Essa rota é responsável por retornar todos os veiculos salvos no banco de dados.",
@@ -89,7 +89,7 @@
                 }
             }
         },
-        "/veiculo/{id}": {
+        "/vehicle/{id}": {
             "get": {
                 "description": "Essa rota é responsável por retornar um único veiculo salvo no banco de dados usando o ID como parametro.",
                 "tags": [
