@@ -1,4 +1,4 @@
-import { ApiError } from "../custom_error/api.error.js";
+import { ApiError } from "../custom-error/api.error.js";
 import { VehicleRepository } from "../repository/vehicle.repository.js";
 
 const vehicleRepository = new VehicleRepository
@@ -11,7 +11,7 @@ export class VehicleService {
         return newVehicle;
     }
 
-    async list() {
+    async findAll() {
         const vehicles = await vehicleRepository.getVehicles()
         if (vehicles.length === 0) {
             throw new ApiError("Lista vazia.", 404)
@@ -19,7 +19,7 @@ export class VehicleService {
         return vehicles
     }
 
-    async listOne(vehicleID) {
+    async findById(vehicleID) {
         const vehicle = await vehicleRepository.getVehicle(vehicleID);
         if (!vehicle) {
             throw new ApiError("Veiculo não encontrado.", 404)

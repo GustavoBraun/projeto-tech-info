@@ -115,7 +115,7 @@ describe('Veiculo', () => {
 
 
     it('Atualizar um veiculo pelo ID deve retornar o novo veiculo com os campos placa, chassi, renavam, modelo, marca e ano e o status 200', (done) => {
-        vehicleService.listOne(id).then(vehicleBeforePutForComparison => {
+        vehicleService.findById(id).then(vehicleBeforePutForComparison => {
             const vehicleForComparison = {
                 "placa": "ABC1234",
                 "chassi": "2MJ hf913f Dt 118036",

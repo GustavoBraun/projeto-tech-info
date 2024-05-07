@@ -11,18 +11,18 @@ export class VehicleController {
             next(error)
         }
     }
-    async list (req, res, next) {
+    async findAll (req, res, next) {
         try {
-            const vehicles = await vehicleService.list();
+            const vehicles = await vehicleService.findAll();
             return res.send(vehicles)
         } catch (error) {
             next(error);
         }
     }
-    async listOne(req, res, next) {
+    async findById(req, res, next) {
         try {       
             const vehicleID = parseInt(req.params.id);
-            const vehicle = await vehicleService.listOne(vehicleID);
+            const vehicle = await vehicleService.findById(vehicleID);
             return res.send(vehicle);
         } catch (error) {
             next(error);
