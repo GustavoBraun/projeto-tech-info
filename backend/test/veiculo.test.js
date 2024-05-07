@@ -1,10 +1,10 @@
 import { use, expect } from "chai";
 import chaiHttp from "chai-http";
 import { app } from "../src/index.js";
-import { VeiculoService } from "../src/service/veiculo.service.js";
+import { VehicleService } from "../src/service/vehicle.service.js";
 
 const chai = use(chaiHttp);
-const veiculoService = new VeiculoService;
+const vehicleService = new VehicleService;
 
 describe('Veiculo', () => {
 
@@ -12,7 +12,7 @@ describe('Veiculo', () => {
 
     it('Listar veiculos deve retornar uma lista de veiculos e um status 200 OU retornar uma linha dizendo que a lista está vazia e um status 404 quando não houver veiculos cadastrados', (done) => {
         chai.request(app)
-            .get('/veiculo')
+            .get('/vehicle')
             .end((err, res) => {
                 if (Object.keys(res.body).length === 0 ) {
                     expect(res).to.have.status(404);
@@ -25,7 +25,7 @@ describe('Veiculo', () => {
     });
 
     it('Criar novo veiculo deve retornar o novo veiculo com os campos id, placa, chassi, renavam, modelo, marca e ano e o status 201', (done) => {
-        var novoVeiculo = {
+        var newVehicle = {
             "placa": "NAX9111",
             "chassi": "2NV s5p0R8 Td 118036",
             "renavam": 87730328207,
@@ -34,32 +34,32 @@ describe('Veiculo', () => {
             "ano": 2009
         }
         chai.request(app)
-            .post('/veiculo')
-            .send(novoVeiculo)
+            .post('/vehicle')
+            .send(newVehicle)
             .end((err, res) => {
                 expect(res).to.have.status(201);
-                expect(res.body).to.have.property('novoVeiculo');
-                expect(res.body.novoVeiculo).to.have.property('_id').that.is.a('number');
-                expect(res.body.novoVeiculo).to.have.property('_placa').that.is.a('string');
-                expect(res.body.novoVeiculo).to.have.property('_chassi').that.is.a('string');
-                expect(res.body.novoVeiculo).to.have.property('_renavam').that.is.a('number');
-                expect(res.body.novoVeiculo).to.have.property('_modelo').that.is.a('string');
-                expect(res.body.novoVeiculo).to.have.property('_marca').that.is.a('string');
-                expect(res.body.novoVeiculo).to.have.property('_ano').that.is.a('number');
-                expect(res.body.novoVeiculo._placa).to.equal("NAX9111");
-                expect(res.body.novoVeiculo._chassi).to.equal("2NV s5p0R8 Td 118036");
-                expect(res.body.novoVeiculo._renavam).to.equal(87730328207);
-                expect(res.body.novoVeiculo._modelo).to.equal("TOPIC FURGAO L 2.2 8V/ 2.0 16V 4p");
-                expect(res.body.novoVeiculo._marca).to.equal("JINBEI");
-                expect(res.body.novoVeiculo._ano).to.equal(2009);
-                id = res.body.novoVeiculo._id;
+                expect(res.body).to.have.property('newVehicle');
+                expect(res.body.newVehicle).to.have.property('_id').that.is.a('number');
+                expect(res.body.newVehicle).to.have.property('_placa').that.is.a('string');
+                expect(res.body.newVehicle).to.have.property('_chassi').that.is.a('string');
+                expect(res.body.newVehicle).to.have.property('_renavam').that.is.a('number');
+                expect(res.body.newVehicle).to.have.property('_modelo').that.is.a('string');
+                expect(res.body.newVehicle).to.have.property('_marca').that.is.a('string');
+                expect(res.body.newVehicle).to.have.property('_ano').that.is.a('number');
+                expect(res.body.newVehicle._placa).to.equal("NAX9111");
+                expect(res.body.newVehicle._chassi).to.equal("2NV s5p0R8 Td 118036");
+                expect(res.body.newVehicle._renavam).to.equal(87730328207);
+                expect(res.body.newVehicle._modelo).to.equal("TOPIC FURGAO L 2.2 8V/ 2.0 16V 4p");
+                expect(res.body.newVehicle._marca).to.equal("JINBEI");
+                expect(res.body.newVehicle._ano).to.equal(2009);
+                id = res.body.newVehicle._id;
                 done();
             });
     });
 
     it('Listar veiculos deve retornar uma lista de veiculos e um status 200 OU retornar uma linha dizendo que a lista está vazia e um status 404 quando não houver veiculos cadastrados', (done) => {
         chai.request(app)
-            .get('/veiculo')
+            .get('/vehicle')
             .end((err, res) => {
                 if (Object.keys(res.body).length === 0 ) {
                     expect(res).to.have.status(404);
@@ -72,15 +72,15 @@ describe('Veiculo', () => {
     });
 
     it('Criar novo veiculo deve retornar um status 400 e uma linha pedindo para preencher todos os campos quando um ou mais campos não foram preenchidos quando um ou mais campos não forem preenchidos', (done) => {
-        var novoVeiculo = {
+        var newVehicle = {
             "chassi": "2NV s5p0R8 Td 118036",
             "renavam": 87730328207,
             "modelo": "TOPIC FURGAO L 2.2 8V/ 2.0 16V 4p",
             "ano": 2009
         }
         chai.request(app)
-            .post('/veiculo')
-            .send(novoVeiculo)
+            .post('/vehicle')
+            .send(newVehicle)
             .end((err, res) => {
                 expect(res).to.have.status(400);
                 expect(res.error.text).to.equal('Por favor, preencha todos os campos.');
@@ -90,7 +90,7 @@ describe('Veiculo', () => {
 
     it('Listar veiculo pelo ID deve retornar um veiculo escolhido pelo ID com os campos placa, chassi, renavam, modelo, marca e ano e o status 200', (done) => {
         chai.request(app)
-            .get('/veiculo/' + id)
+            .get('/vehicle/' + id)
             .end((err, res) => {
                 expect(res).to.have.status(200);
                 expect(res.body).to.have.property('placa').that.is.a('string');
@@ -105,7 +105,7 @@ describe('Veiculo', () => {
 
     it('Listar veiculo pelo ID deve retornar uma linha dizendo que o veiculo não foi encontrado e status 404 quando o veículo não existir', (done) => {
         chai.request(app)
-            .get('/veiculo/' + 99999)
+            .get('/vehicle/' + 99999)
             .end((err, res) => {
                 expect(res).to.have.status(404);
                 expect(res.error.text).to.equal('Veiculo não encontrado.');
@@ -115,8 +115,8 @@ describe('Veiculo', () => {
 
 
     it('Atualizar um veiculo pelo ID deve retornar o novo veiculo com os campos placa, chassi, renavam, modelo, marca e ano e o status 200', (done) => {
-        veiculoService.listOne(id).then(veiculoAntesDoPutParaComparacao => {
-            const veiculoParaAlteracao = {
+        vehicleService.listOne(id).then(vehicleBeforePutForComparison => {
+            const vehicleForComparison = {
                 "placa": "ABC1234",
                 "chassi": "2MJ hf913f Dt 118036",
                 "renavam": 924651328207,
@@ -125,8 +125,8 @@ describe('Veiculo', () => {
                 "ano": 2019
             }
             chai.request(app)
-                .put('/veiculo/' + id)
-                .send(veiculoParaAlteracao)
+                .put('/vehicle/' + id)
+                .send(vehicleForComparison)
                 .end((err, res) => {
                     expect(res).to.have.status(200);
                     expect(res.body).to.have.property('_placa').that.is.a('string');
@@ -141,19 +141,19 @@ describe('Veiculo', () => {
                     expect(res.body._modelo).to.equal("TOPIC BARAO L 2.9 81V/ 2.0 16V 4p");
                     expect(res.body._marca).to.equal("JIBOIA");
                     expect(res.body._ano).to.equal(2019);
-                    expect(res.body._placa).not.equal(veiculoAntesDoPutParaComparacao.placa);
-                    expect(res.body._chassi).not.equal(veiculoAntesDoPutParaComparacao.chassi);
-                    expect(res.body._renava).not.equal(veiculoAntesDoPutParaComparacao.renavam);
-                    expect(res.body._modelo).not.equal(veiculoAntesDoPutParaComparacao.modelo);
-                    expect(res.body._marca).not.equal(veiculoAntesDoPutParaComparacao.marca);
-                    expect(res.body._ano).not.equal(veiculoAntesDoPutParaComparacao.ano);
+                    expect(res.body._placa).not.equal(vehicleBeforePutForComparison.placa);
+                    expect(res.body._chassi).not.equal(vehicleBeforePutForComparison.chassi);
+                    expect(res.body._renava).not.equal(vehicleBeforePutForComparison.renavam);
+                    expect(res.body._modelo).not.equal(vehicleBeforePutForComparison.modelo);
+                    expect(res.body._marca).not.equal(vehicleBeforePutForComparison.marca);
+                    expect(res.body._ano).not.equal(vehicleBeforePutForComparison.ano);
                 })
         })
         done();
     });
 
     it('Atualizar veiculo deve retornar a mensagem "Veiculo não encontrado" e o status 404 quando tentar atualizar um veiculo que não existe', (done) => {
-        const veiculoParaAlteracao = {
+        const vehicleForComparison = {
             "placa": "ABC1234",
             "chassi": "2MJ hf913f Dt 118036",
             "renavam": 924651328207,
@@ -162,8 +162,8 @@ describe('Veiculo', () => {
             "ano": 2019
         }
         chai.request(app)
-            .put('/veiculo/' + 9999)
-            .send(veiculoParaAlteracao)
+            .put('/vehicle/' + 9999)
+            .send(vehicleForComparison)
             .end((err, res) => {
                 expect(res.text).to.equal('Veiculo não encontrado.');
                 expect(res).to.have.status(404);
@@ -172,15 +172,15 @@ describe('Veiculo', () => {
     });
 
     it('Atualizar veiculo deve retornar um status 400 e uma linha pedindo para preencher todos os campos quando um ou mais campos não foram preenchidos', (done) => {
-        var novoVeiculo = {
+        var newVehicle = {
             "placa": "ABC1234",
             "chassi": "2MJ hf913f Dt 118036",
             "renavam": 924651328207,
             "marca": "JIBOIA",
         }
         chai.request(app)
-            .put('/veiculo/' + 9999)
-            .send(novoVeiculo)
+            .put('/vehicle/' + 9999)
+            .send(newVehicle)
             .end((err, res) => {
                 expect(res).to.have.status(400);
                 expect(res.error.text).to.equal('Por favor, preencha todos os campos.');
@@ -190,7 +190,7 @@ describe('Veiculo', () => {
     
     it('Deve deletar o veiculo pelo ID retornando uma mensagem "Veiculo deletado" e o status 200', (done) => {
         chai.request(app)
-            .delete('/veiculo/' + id)
+            .delete('/vehicle/' + id)
             .end((err, res) => {
                 expect(res.text).to.equal('{"message":"Veiculo deletado."}');
                 expect(res).to.have.status(200);
@@ -200,7 +200,7 @@ describe('Veiculo', () => {
     
     it('Deletar veiculo deve retornar a mensagem "Veiculo não encontrado" e o status 400 quando tentar atualizar um veiculo que não existe', (done) => {
         chai.request(app)
-            .delete('/veiculo/' + 9999)
+            .delete('/vehicle/' + 9999)
             .end((err, res) => {
                 expect(res.text).to.equal('Veiculo não encontrado.');
                 expect(res).to.have.status(404);

@@ -1,4 +1,4 @@
-export default class Veiculo {
+export default class Vehicle {
     constructor(placa, chassi, renavam, modelo, marca, ano) {
         this._placa = placa;
         this._chassi = chassi;
