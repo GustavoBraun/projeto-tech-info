@@ -36,9 +36,9 @@ export class VehicleService {
         if (!vehicleFound) {
             throw new ApiError("Veiculo não encontrado.", 404)
         }
-        const newVehicle = vehicleRepository.createVehicle(vehicle);
-        vehicleRepository.updateVehicle(newVehicle, vehicleID);
-        return newVehicle;
+        const updatedVehicle = vehicleRepository.createVehicle(vehicle);
+        vehicleRepository.updateVehicle(updatedVehicle, vehicleID);
+        return updatedVehicle;
     }
 
     async delete(vehicleID) {

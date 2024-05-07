@@ -2,7 +2,7 @@ import { VehicleService } from "../service/vehicle.service.js";
 const vehicleService = new  VehicleService
 
 export class VehicleController {
-    async create (req, res, next) {
+    async create(req, res, next) {
         try {
             const vehicle = req.body;
             const newVehicle = await vehicleService.create(vehicle);
@@ -11,7 +11,7 @@ export class VehicleController {
             next(error)
         }
     }
-    async findAll (req, res, next) {
+    async findAll(req, res, next) {
         try {
             const vehicles = await vehicleService.findAll();
             return res.send(vehicles)
@@ -33,8 +33,8 @@ export class VehicleController {
         try {
             const vehicleID = parseInt(req.params.id);
             const vehicle = req.body;
-            const newVehicle = await vehicleService.update(vehicle, vehicleID);
-            return res.status(200).send(newVehicle);
+            const updatedVehicle = await vehicleService.update(vehicle, vehicleID);
+            return res.status(200).send(updatedVehicle);
         } catch (error) {
             next(error);
         }
